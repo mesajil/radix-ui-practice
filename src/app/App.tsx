@@ -2,11 +2,16 @@ import { Button } from '../components/ui/Button'
 import './App.css'
 
 function App() {
+  const hello = () => alert('Hello World!')
   return (
     <>
-      <Button label='My Default Button'></Button>
-      <Button label='My Big Button' size={'large'} variant={'secondary'}></Button>
-      <Button label='My Small Button' size={'small'} variant={'outline'}></Button>
+      <Button onClick={hello}>My Default Button</Button>
+      <Button onClick={hello} size={'large'} variant={'secondary'}>
+        My Big Button
+      </Button>
+      <Button onClick={hello} size={'small'} variant={'outline'} className='text-red-400'>
+        My Outline Button
+      </Button>
     </>
   )
 }

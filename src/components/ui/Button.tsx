@@ -1,5 +1,6 @@
-import { FC } from 'react'
+import { ComponentProps, FC } from 'react'
 import { cva, VariantProps } from 'class-variance-authority'
+import { cn } from '../../lib/utils'
 
 const buttonStyles = cva('px-4 py-2 font-semibold rounded', {
   variants: {
@@ -20,10 +21,8 @@ const buttonStyles = cva('px-4 py-2 font-semibold rounded', {
   },
 })
 
-interface ButtonProps extends VariantProps<typeof buttonStyles> {
-  label: string
-}
+interface ButtonProps extends ComponentProps<'button'>, VariantProps<typeof buttonStyles> {}
 
-export const Button: FC<ButtonProps> = ({ label, size, variant }) => {
-  return <button className={buttonStyles({ size, variant })}>{label}</button>
+export const Button: FC<ButtonProps> = ({ className, size, variant, ...props }) => {
+  return <button className={cn(buttonStyles({ size, variant, className }))} {...props} />
 }
