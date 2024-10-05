@@ -1,20 +1,21 @@
 import { Button } from './components/ui/Button'
 import './App.css'
 import { Textarea } from './components/ui/textarea'
+import { useState } from 'react'
 
 function App() {
-  const hello = () => alert('Hello World!')
+  const [message, setMessage] = useState('')
+  const showAlert = (message: string) => alert(message)
+  const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setMessage(e.target.value)
+  }
   return (
     <>
-      <Textarea />
-      <Button onClick={hello}>My Default Button</Button>
-      <Button onClick={hello} size={'large'} variant={'secondary'}>
-        My Big Button
+      <Textarea value={message} onChange={handleTextareaChange} />
+      <Button onClick={() => showAlert(message)} size={'large'} variant={'secondary'}>
+        Send message
       </Button>
-      <Button size={'small'} variant={'outline'} className='text-red-400'>
-        My Outline Button
-      </Button>
-      <Button asChild size={'large'} variant={'outline'}>
+      <Button asChild size={'large'} variant={'outline'} className='text-red-400'>
         <a href='https://github.com/mesajil' target='_blank' rel='noopener noreferrer'>
           GitHub
         </a>
